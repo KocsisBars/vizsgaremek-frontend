@@ -4,9 +4,28 @@ type LoginProps = {
 };
 
 const Login = ({ onLogin, onNavigate }: LoginProps) => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin();
+    const form = e.target as HTMLFormElement;
+    const username = (form[0] as HTMLInputElement).value;
+    const password = (form[1] as HTMLInputElement).value;
+
+    const response = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("token", data.access_token);
+      alert("Sikeres bejelentkezés!");
+      onLogin();
+    } else {
+      alert("Sikertelen bejelentkezés!");
+    }
   };
 
   return (
@@ -18,7 +37,8 @@ const Login = ({ onLogin, onNavigate }: LoginProps) => {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account? <button onClick={() => onNavigate('register')}>Register</button>
+        Don't have an account?{" "}
+        <button onClick={() => onNavigate("register")}>Register</button>
       </p>
     </div>
   );
