@@ -7,15 +7,18 @@ type NavbarProps = {
 const Navbar = ({ onNavigate, isLoggedIn, onLogout }: NavbarProps) => {
   return (
     <nav className="navbar">
-      <h1>Game App</h1>
-      <div>
+      <div className="navbar-left">
+        <img src="/gamelogo.png" alt="Game Logo" className="game-logo" />
+        <h1>JátékBazár</h1>
+      </div>
+      <div className="navbar-right">
         <button onClick={() => onNavigate('home')}>Home</button>
-        {!isLoggedIn && <button onClick={() => onNavigate('login')}>Login</button>}
-        {!isLoggedIn && <button onClick={() => onNavigate('register')}>Register</button>}
+        {!isLoggedIn && <button onClick={() => onNavigate('login')}>Bejelentkezés</button>}
+        {!isLoggedIn && <button onClick={() => onNavigate('register')}>Regisztráció</button>}
         {isLoggedIn && <button onClick={() => onNavigate('wordle')}>Wordle</button>}
         {isLoggedIn && <button onClick={() => onNavigate('snake')}>Snake</button>}
         {isLoggedIn && <button onClick={() => onNavigate('flappybird')}>FlappyBird</button>}
-        {isLoggedIn && <button onClick={() => onNavigate('leaderboard')}>Leaderboard</button>}
+        {isLoggedIn && <button onClick={() => onNavigate('leaderboard')}>Ranglista</button>}
         {isLoggedIn && <button onClick={onLogout}>Logout</button>}
       </div>
     </nav>
@@ -24,5 +27,5 @@ const Navbar = ({ onNavigate, isLoggedIn, onLogout }: NavbarProps) => {
 
 export default Navbar;
 
-  
-  
+
+

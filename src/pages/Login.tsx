@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 type LoginProps = {
   onLogin: () => void;
   onNavigate: (page: string) => void;
 };
 
 const Login = ({ onLogin, onNavigate }: LoginProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -13,36 +17,52 @@ const Login = ({ onLogin, onNavigate }: LoginProps) => {
     const response = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("token", data.access_token);
-      alert("Sikeres bejelentkezés!");
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
+      alert("✅ Sikeres bejelentkezés!");
       onLogin();
     } else {
-      alert("Sikertelen bejelentkezés!");
+      alert("❌ Sikertelen bejelentkezés!");
     }
   };
 
   return (
     <div className="container">
-      <h1>Login</h1>
+      <h1>Bejelentkezés</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
+        <input type="text" placeholder="Felhasználónév" required />
+
+        {}
+        <div className="password-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Jelszó"
+            required
+          />
+          <button
+            type="button"
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "👁️" : "🙈"}
+          </button>
+        </div>
+
+        <button type="submit">Bejelentkezés</button>
       </form>
       <p>
-        Don't have an account?{" "}
-        <button onClick={() => onNavigate("register")}>Register</button>
+        Nincs még fiókod?{" "}
+        <button onClick={() => onNavigate("register")}>Regisztráció</button>
       </p>
     </div>
   );
 };
 
 export default Login;
-

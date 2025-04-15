@@ -34,9 +34,9 @@ const App = () => {
     if (!isLoggedIn && ['wordle', 'snake', 'flappybird', 'leaderboard'].includes(currentPage)) {
       return (
         <div className="container">
-          <h1>Access Denied</h1>
-          <p>You need to log in to access this page.</p>
-          <button onClick={() => setCurrentPage('login')}>Go to Login</button>
+          <h1>Hozzáférés megtagadva</h1>
+          <p>Be kell jelentkezni,hogy elérd ezt az oldalt</p>
+          <button onClick={() => setCurrentPage('login')}>Bejelentkezéshez</button>
         </div>
       );
     }
