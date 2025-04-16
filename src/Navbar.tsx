@@ -12,7 +12,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onLogout }: NavbarProps) => {
         <h1>JátékBazár</h1>
       </div>
       <div className="navbar-right">
-        <button onClick={() => onNavigate('home')}>Főoldal</button>
+        <button onClick={() => onNavigate('home')}>Home</button>
         {!isLoggedIn && <button onClick={() => onNavigate('login')}>Bejelentkezés</button>}
         {!isLoggedIn && <button onClick={() => onNavigate('register')}>Regisztráció</button>}
         {isLoggedIn && <button onClick={() => onNavigate('wordle')}>Wordle</button>}
