@@ -97,14 +97,14 @@ const Leaderboard = () => {
 
   return (
     <div className="container">
-      <h1>Leaderboard</h1>
+      <h1>Ranglista</h1>
       <table className="leaderboard-table">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Points</th>
-            {isAdmin && <th>Actions</th>} {}
+            <th>Hely</th>
+            <th>Felhasználónév</th>
+            <th>Pontszám</th>
+            {isAdmin && <th>Műveletek</th>} {}
           </tr>
         </thead>
         <tbody>
@@ -126,7 +126,7 @@ const Leaderboard = () => {
                       borderRadius: "5px",
                     }}
                   >
-                    Delete
+                    Törlés
                   </button>
                 </td>
               )}
