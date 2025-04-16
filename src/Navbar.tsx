@@ -19,7 +19,7 @@ const Navbar = ({ onNavigate, isLoggedIn, onLogout }: NavbarProps) => {
         {isLoggedIn && <button onClick={() => onNavigate('snake')}>Snake</button>}
         {isLoggedIn && <button onClick={() => onNavigate('flappybird')}>FlappyBird</button>}
         {isLoggedIn && <button onClick={() => onNavigate('leaderboard')}>Ranglista</button>}
-        {isLoggedIn && <button onClick={onLogout}>Logout</button>}
+        {isLoggedIn && <button onClick={onLogout}>Kijelentkezés</button>}
       </div>
     </nav>
   );
